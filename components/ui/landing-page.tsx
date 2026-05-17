@@ -15,6 +15,7 @@ import {
   PARTNERS,
   CONTACT,
 } from "@/constants/content";
+import { RECOGNITIONS } from "@/constants/credentials";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -56,7 +57,7 @@ export function DesignAgency() {
           href: service.href,
         }))}
       >
-        <motion.div className="mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16">
+        <motion.div className="mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-4 pb-14 pt-4 sm:px-6 sm:pt-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:pb-20 lg:pt-8">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -252,24 +253,25 @@ export function DesignAgency() {
       <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="mb-10 text-center"
+          >
+            <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">Reconocimientos</h2>
+            <p className="mx-auto mt-3 max-w-xl text-slate-600">
+              Distinciones por cumplimiento en obra y gestión de calidad.
+            </p>
+          </motion.div>
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             className="grid gap-6 md:grid-cols-2"
           >
-            {[
-              {
-                year: "2022",
-                title: "Cumplimiento SG-SST",
-                text: "Reconocimiento de Constructora Capital Bogotá SAS por cumplimiento del sistema de gestión.",
-              },
-              {
-                year: "2020",
-                title: "Mención de honor",
-                text: "Por el cumplimiento en el proyecto Reserva de Madelena, Constructora Capital.",
-              },
-            ].map((item) => (
+            {RECOGNITIONS.map((item) => (
               <motion.div
                 key={item.year}
                 variants={itemFadeIn}
@@ -286,11 +288,19 @@ export function DesignAgency() {
                 >
                   <span className="text-sm font-bold text-primary">{item.year}</span>
                   <h3 className="text-xl font-bold">{item.title}</h3>
-                  <p className="mt-1 text-muted-foreground">{item.text}</p>
+                  <p className="mt-1 text-muted-foreground">{item.description}</p>
                 </motion.div>
               </motion.div>
             ))}
           </motion.div>
+          <div className="mt-10 text-center">
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/reconocimientos">
+                Ver reconocimientos y documentos
+                <ArrowUpRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 

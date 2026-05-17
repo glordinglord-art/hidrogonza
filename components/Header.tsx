@@ -42,7 +42,7 @@ export function Header() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.05 }}
-          className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+          className="mx-auto flex min-h-[4.5rem] max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
         >
           <BrandLogo variant="header" />
 

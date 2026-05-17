@@ -39,7 +39,7 @@ export function PulseFitHero({
   return (
     <section
       className={cn(
-        "relative flex w-full min-h-[calc(100vh-4rem)] flex-col overflow-hidden",
+        "relative flex w-full min-h-[calc(100vh-5rem)] flex-col overflow-hidden pt-2 md:pt-4",
         className
       )}
       style={{
@@ -58,7 +58,7 @@ export function PulseFitHero({
         />
       )}
 
-      <div className="relative z-10 flex flex-1 flex-col justify-center">
+      <div className="relative z-10 flex flex-1 flex-col justify-start pt-3 md:pt-5 lg:pt-7">
         {children ?? (
           <div className="mx-auto flex max-w-4xl flex-col items-center px-4 text-center">
             <motion.h1
@@ -86,7 +86,7 @@ export function PulseFitHero({
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="relative z-10 w-full overflow-hidden py-10 md:py-14"
+          className="relative z-10 w-full overflow-hidden pb-12 pt-8 md:pb-16 md:pt-10"
         >
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent md:w-36" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent md:w-36" />

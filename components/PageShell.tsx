@@ -16,7 +16,7 @@ export function PageShell({ title, description, children, className }: PageShell
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className={cn("mx-auto max-w-7xl bg-white px-4 pb-16 pt-24 sm:px-6 lg:px-8", className)}
+      className={cn("mx-auto max-w-7xl bg-white px-4 pb-16 pt-8 sm:px-6 lg:px-10", className)}
     >
       <motion.div
         initial={{ opacity: 0, y: 8 }}

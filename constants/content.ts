@@ -6,6 +6,7 @@ export const NAV_LINKS = [
   { name: "Nosotros", href: "/nosotros" },
   { name: "Servicios", href: "/servicios" },
   { name: "Proyectos", href: "/proyectos" },
+  { name: "Reconocimientos", href: "/reconocimientos" },
   { name: "Aliados", href: "/aliados" },
 ] as const;
 
@@ -171,10 +172,15 @@ export const PARTNERS: Partner[] = [
   },
 ];
 
+const WHATSAPP_NUMBER = "573112212000";
+const WHATSAPP_MESSAGE =
+  "Hola, estoy interesado en los servicios de Hidrogonza S.A.S. ¿Podrían darme más información?";
+
 export const CONTACT = {
-  phone: "311 221 2020",
-  phoneHref: "https://wa.me/573112212020",
+  phone: "311 221 2000",
+  whatsappMessage: WHATSAPP_MESSAGE,
+  phoneHref: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`,
   address: "Carrera 68 # 57C - 09 Sur",
   city: "Bogotá D.C., Colombia",
-  emails: ["hidrogonza11@hotmail.com", "mhidrogonza11@gmail.com"],
+  emails: ["hidrogonza11@hotmail.com", "hidrogonza11@gmail.com"],
 } as const;

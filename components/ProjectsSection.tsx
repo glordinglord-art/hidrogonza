@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { IMAGES } from "@/constants/images";
-import { Award, Building2, MapPin } from "lucide-react";
+import { Building2, MapPin, ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type ProjectsSectionProps = { embedded?: boolean };
 
@@ -38,20 +40,6 @@ export function ProjectsSection({ embedded }: ProjectsSectionProps) {
     },
   ];
 
-  const recognitions = [
-    {
-      title: "Reconocimiento Constructora Capital",
-      description: "Al cumplimiento del sistema de Gestión Año 2022",
-      year: "2022",
-    },
-    {
-      title: "Mención de Honor Constructora Capital",
-      description:
-        "Por el cumplimiento de nuestras actividades en el proyecto Reserva de Madelena Año 2020",
-      year: "2020",
-    },
-  ];
-
   return (
     <section id="proyectos" className={embedded ? "bg-white" : "bg-white py-24"}>
       <div className={embedded ? "" : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"}>
@@ -62,7 +50,7 @@ export function ProjectsSection({ embedded }: ProjectsSectionProps) {
           </div>
         )}
 
-        <div className="mb-24 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -91,29 +79,13 @@ export function ProjectsSection({ embedded }: ProjectsSectionProps) {
           ))}
         </div>
 
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-5xl">Reconocimientos</h2>
-          <div className="mx-auto mb-8 h-1 w-24 rounded-full bg-primary" />
-        </div>
-
-        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
-          {recognitions.map((rec, index) => (
-            <div
-              key={index}
-              className="flex items-start space-x-6 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="shrink-0 rounded-full bg-amber-50 p-4">
-                <Award className="h-8 w-8 text-amber-600" />
-              </div>
-              <div>
-                <span className="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-bold text-primary">
-                  {rec.year}
-                </span>
-                <h3 className="mb-2 text-xl font-bold text-slate-900">{rec.title}</h3>
-                <p className="text-slate-600">{rec.description}</p>
-              </div>
-            </div>
-          ))}
+        <div className="text-center">
+          <Button asChild size="lg" variant="outline" className="rounded-full">
+            <Link href="/reconocimientos">
+              Ver reconocimientos
+              <ArrowUpRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="es" className="light scroll-smooth">
       <body className={`${inter.className} min-h-screen bg-white text-slate-900 antialiased`}>
         <Header />
-        <main className="min-h-screen bg-white">{children}</main>
+        <main className="min-h-screen bg-white pt-[4.25rem] md:pt-[4.5rem]">{children}</main>
         <Footer />
         <WhatsAppButton />
       </body>
