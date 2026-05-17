@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { HeroLogo } from "@/components/HeroLogo";
-import { HeroGeometricBackground } from "@/components/ui/modern-hero-section";
+import { PulseFitHero } from "@/components/ui/pulse-fit-hero";
 import { cn } from "@/lib/utils";
 import { getPartnerLogoProps, partnerLogoAreaStyles } from "@/lib/partner-logo";
 
@@ -46,57 +46,64 @@ export function DesignAgency() {
       transition={{ duration: 0.35 }}
       className="bg-white"
     >
-      {/* Hero — pantalla completa, sin tarjeta flotante */}
-      <section className="relative min-h-[calc(100vh-4rem)] overflow-hidden pt-16">
-        <HeroGeometricBackground />
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col justify-center px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:gap-14 lg:px-8">
+      <PulseFitHero
+        title="Especialistas en redes hidrosanitarias"
+        subtitle="Diseño y construcción de redes de gas, sistemas contra incendio y equipos de bombeo con calidad, normatividad y confianza."
+        programs={SERVICES.map((service) => ({
+          image: service.image,
+          category: "Servicio",
+          title: service.title,
+          href: service.href,
+        }))}
+      >
+        <motion.div className="mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16">
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="max-w-2xl space-y-6 text-white drop-shadow-sm"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.15 }}
+            className="flex flex-col items-start text-left"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-sm shadow-lg backdrop-blur-md">
-              <Zap className="h-4 w-4 text-sky-200" />
+            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
+              <Zap className="h-4 w-4 text-primary" />
               Soluciones al Instante
             </span>
-            <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Especialistas en redes{" "}
-              <span className="bg-gradient-to-r from-sky-100 via-[#7dd3fc] to-[#00aeef] bg-clip-text text-transparent">
-                hidrosanitarias
-              </span>
+              <span className="text-primary">hidrosanitarias</span>
             </h1>
-            <p className="text-lg text-white/90 sm:text-xl">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl">
               Diseño y construcción de redes de gas, sistemas contra incendio y
               equipos de bombeo con calidad, normatividad y confianza.
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full bg-primary hover:bg-primary/90">
-                <Link href="/nosotros">
-                  Conócenos
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link
+                href="/nosotros"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0a192f] px-8 py-4 text-base font-medium text-white shadow-lg transition-transform hover:scale-[1.02] hover:bg-[#0a192f]/90"
               >
-                <Link href="/servicios">Ver servicios</Link>
-              </Button>
+                Conócenos
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link
+                href="/servicios"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-8 py-4 text-base font-medium text-slate-800 shadow-sm transition-transform hover:scale-[1.02] hover:border-primary/40"
+              >
+                Ver servicios
+              </Link>
             </div>
+            <p className="mt-4 text-sm italic text-slate-500">
+              Más de 10 años de experiencia en Bogotá y Cundinamarca
+            </p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.55, delay: 0.2 }}
-            className="mt-10 flex justify-center lg:mt-0"
+            className="flex justify-center lg:justify-end"
           >
-            <HeroLogo />
+            <HeroLogo variant="light" />
           </motion.div>
-        </div>
-      </section>
+        </motion.div>
+      </PulseFitHero>
 
       {/* Servicios preview */}
       <section className="bg-white py-16 md:py-24">
