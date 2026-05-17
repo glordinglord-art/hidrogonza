@@ -1,5 +1,6 @@
-import Image from "next/image";
-import { IMAGES } from "@/constants/images";
+import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
+import { CONTACT } from "@/constants/content";
 import { Phone, MapPin, Mail } from "lucide-react";
 
 export function Footer() {
@@ -9,13 +10,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="relative w-48 h-48 mb-6">
-              <Image
-                src={IMAGES.logo}
-                alt="Hidrogonza S.A.S Logo"
-                fill
-                className="object-contain object-left"
-              />
+            <div className="mb-6">
+              <BrandLogo variant="footer" href="/" />
             </div>
             <p className="text-gray-400 max-w-md text-lg">
               Soluciones al instante en diseño y construcción de redes hidrosanitarias, gas y sistemas contra incendio.
@@ -32,7 +28,9 @@ export function Footer() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Llámenos</p>
-                  <p className="text-xl font-semibold">311 221 2020</p>
+                  <a href={CONTACT.phoneHref} className="text-xl font-semibold hover:text-primary">
+                    {CONTACT.phone}
+                  </a>
                 </div>
               </div>
 
@@ -53,8 +51,11 @@ export function Footer() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Escríbanos</p>
-                  <p className="text-lg">hidrogonza11@hotmail.com</p>
-                  <p className="text-lg">mhidrogonza11@gmail.com</p>
+                  {CONTACT.emails.map((email) => (
+                    <a key={email} href={`mailto:${email}`} className="block text-lg hover:text-primary">
+                      {email}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -66,9 +67,10 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Hidrogonza S.A.S. Todos los derechos reservados.
           </p>
           <div className="flex space-x-6 text-sm text-gray-500">
-            <a href="/nosotros" className="hover:text-primary transition-colors">Nosotros</a>
-            <a href="/servicios" className="hover:text-primary transition-colors">Servicios</a>
-            <a href="/proyectos" className="hover:text-primary transition-colors">Proyectos</a>
+            <Link href="/nosotros" className="hover:text-primary transition-colors">Nosotros</Link>
+            <Link href="/servicios" className="hover:text-primary transition-colors">Servicios</Link>
+            <Link href="/proyectos" className="hover:text-primary transition-colors">Proyectos</Link>
+            <Link href="/#contacto" className="hover:text-primary transition-colors">Contacto</Link>
           </div>
         </div>
       </div>

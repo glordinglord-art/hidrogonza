@@ -4,15 +4,17 @@ import { TextParallaxContent } from "./ui/text-parallax-content-scroll";
 import { IMAGES } from "@/constants/images";
 import { CheckCircle2 } from "lucide-react";
 
-export function ServicesSection() {
+type ServicesSectionProps = { embedded?: boolean };
+
+export function ServicesSection({ embedded }: ServicesSectionProps) {
   return (
     <section id="servicios" className="bg-white">
-      <div className="py-16 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold text-secondary mb-4">
-          Nuestros Servicios
-        </h2>
-        <div className="w-24 h-1 bg-primary mx-auto"></div>
-      </div>
+      {!embedded && (
+        <div className="py-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-foreground md:text-5xl">Nuestros servicios</h2>
+          <div className="mx-auto h-1 w-24 rounded-full bg-primary" />
+        </div>
+      )}
 
       <TextParallaxContent
         imgUrl={IMAGES.services.incendio}
@@ -26,7 +28,7 @@ export function ServicesSection() {
             "Instalación de gabinetes y rociadores",
             "Diseño y cálculo de redes",
             "Montaje de equipos de presión",
-            "Cumplimiento de normatividad vigente"
+            "Cumplimiento de normatividad vigente",
           ]}
         />
       </TextParallaxContent>
@@ -43,7 +45,7 @@ export function ServicesSection() {
             "Redes de media y baja presión",
             "Instalación de centros de medición",
             "Conexión de gasodomésticos",
-            "Cálculo de ventilaciones y ductos de desfogue"
+            "Cálculo de ventilaciones y ductos de desfogue",
           ]}
         />
       </TextParallaxContent>
@@ -60,7 +62,7 @@ export function ServicesSection() {
             "Aguas negras, grises y pluviales",
             "Ventilaciones y reventilaciones",
             "Sistemas de drenaje completos",
-            "Atención a sector residencial, comercial e industrial"
+            "Atención a sector residencial, comercial e industrial",
           ]}
         />
       </TextParallaxContent>
@@ -77,7 +79,7 @@ export function ServicesSection() {
             "Sistemas de agua potable",
             "Redes de agua caliente centralizada",
             "Redes de agua fría",
-            "Proyectos residenciales, comerciales e industriales"
+            "Proyectos residenciales, comerciales e industriales",
           ]}
         />
       </TextParallaxContent>
@@ -85,20 +87,24 @@ export function ServicesSection() {
   );
 }
 
-const ServiceContent = ({ title, description, features }: { title: string, description: string, features: string[] }) => (
+const ServiceContent = ({
+  title,
+  description,
+  features,
+}: {
+  title: string;
+  description: string;
+  features: string[];
+}) => (
   <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
-    <h2 className="col-span-1 text-3xl font-bold text-secondary md:col-span-4">
-      {title}
-    </h2>
+    <h2 className="col-span-1 text-3xl font-bold text-foreground md:col-span-4">{title}</h2>
     <div className="col-span-1 md:col-span-8">
-      <p className="mb-8 text-xl text-gray-600 md:text-2xl leading-relaxed">
-        {description}
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <p className="mb-8 text-xl leading-relaxed text-muted-foreground md:text-2xl">{description}</p>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {features.map((feature, index) => (
           <div key={index} className="flex items-start space-x-3">
-            <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-            <span className="text-lg text-gray-700">{feature}</span>
+            <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+            <span className="text-lg text-muted-foreground">{feature}</span>
           </div>
         ))}
       </div>

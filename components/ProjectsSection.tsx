@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { IMAGES } from "@/constants/images";
-import { Award, Building2 } from "lucide-react";
+import { Award, Building2, MapPin } from "lucide-react";
 
-export function ProjectsSection() {
+type ProjectsSectionProps = { embedded?: boolean };
+
+export function ProjectsSection({ embedded }: ProjectsSectionProps) {
   const projects = [
     {
       name: "Centro Comercial Plaza Madero",
@@ -44,66 +46,71 @@ export function ProjectsSection() {
     },
     {
       title: "Mención de Honor Constructora Capital",
-      description: "Por el cumplimiento de nuestras actividades en el proyecto Reserva de Madelena Año 2020",
+      description:
+        "Por el cumplimiento de nuestras actividades en el proyecto Reserva de Madelena Año 2020",
       year: "2020",
     },
   ];
 
   return (
-    <section id="proyectos" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Proyectos */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-secondary mb-4">
-            Proyectos Realizados
-          </h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
-        </div>
+    <section id="proyectos" className={embedded ? "bg-white" : "bg-white py-24"}>
+      <div className={embedded ? "" : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"}>
+        {!embedded && (
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-5xl">Proyectos realizados</h2>
+            <div className="mx-auto mb-8 h-1 w-24 rounded-full bg-primary" />
+          </div>
+        )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+        <div className="mb-24 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+            <div
+              key={index}
+              className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
+            >
               <div className="relative h-64 w-full overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.name}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-secondary mb-2">{project.name}</h3>
-                <div className="flex items-center text-gray-600 mb-2">
-                  <Building2 className="w-4 h-4 mr-2 text-primary" />
+                <h3 className="mb-2 text-xl font-bold text-slate-900">{project.name}</h3>
+                <div className="mb-2 flex items-center text-slate-600">
+                  <Building2 className="mr-2 h-4 w-4 text-primary" />
                   <span>{project.client}</span>
                 </div>
-                <p className="text-gray-500 text-sm">📍 {project.location}</p>
+                <p className="flex items-center gap-1 text-sm text-slate-500">
+                  <MapPin className="h-4 w-4 shrink-0 text-primary" />
+                  {project.location}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Reconocimientos */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-secondary mb-4">
-            Reconocimientos
-          </h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-5xl">Reconocimientos</h2>
+          <div className="mx-auto mb-8 h-1 w-24 rounded-full bg-primary" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
           {recognitions.map((rec, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex items-start space-x-6 hover:shadow-md transition-shadow">
-              <div className="p-4 bg-yellow-50 rounded-full flex-shrink-0">
-                <Award className="w-8 h-8 text-yellow-600" />
+            <div
+              key={index}
+              className="flex items-start space-x-6 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div className="shrink-0 rounded-full bg-amber-50 p-4">
+                <Award className="h-8 w-8 text-amber-600" />
               </div>
               <div>
-                <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-bold rounded-full mb-3">
+                <span className="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-bold text-primary">
                   {rec.year}
                 </span>
-                <h3 className="text-xl font-bold text-secondary mb-2">{rec.title}</h3>
-                <p className="text-gray-600">{rec.description}</p>
+                <h3 className="mb-2 text-xl font-bold text-slate-900">{rec.title}</h3>
+                <p className="text-slate-600">{rec.description}</p>
               </div>
             </div>
           ))}

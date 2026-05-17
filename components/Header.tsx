@@ -1,91 +1,127 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import { Menu, X } from "lucide-react";
-import { IMAGES } from "@/constants/images";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { Menu, X, ChevronRight } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
+import { NAV_LINKS, CONTACT } from "@/constants/content";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Inicio", href: "/" },
-    { name: "Nosotros", href: "/nosotros" },
-    { name: "Servicios", href: "/servicios" },
-    { name: "Proyectos", href: "/proyectos" },
-    { name: "Aliados", href: "/aliados" },
-  ];
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-md py-2"
-          : "bg-white/90 backdrop-blur-sm py-4 shadow-sm"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <a href="/" className="relative w-40 h-16 flex items-center">
-            <Image
-              src={IMAGES.logo}
-              alt="Hidrogonza Logo"
-              fill
-              className="object-contain object-left drop-shadow-md"
-              priority
-            />
-          </a>
+    <>
+      <motion.header
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.4 }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 w-full border-b border-border transition-shadow duration-300",
+          scrollY > 20
+            ? "bg-white/95 shadow-md backdrop-blur-md"
+            : "bg-white/90 backdrop-blur-sm"
+        )}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.05 }}
+          className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+        >
+          <BrandLogo variant="header" />
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-gray-700 hover:text-primary font-semibold transition-colors text-sm uppercase tracking-wide"
-              >
-                {link.name}
-              </a>
-            ))}
+          <nav className="hidden items-center gap-1 md:flex">
+            {NAV_LINKS.map((link) => {
+              const active = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    active
+                      ? "bg-primary/10 text-primary"
+                      : "text-foreground/80 hover:bg-muted hover:text-primary"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-secondary hover:text-primary transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          <motion.div
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.15 }}
+            className="hidden md:block"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-      </div>
+            <Button asChild className="rounded-full bg-primary px-6 hover:bg-primary/90">
+              <a href={CONTACT.phoneHref} target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
+            </Button>
+          </motion.div>
 
-      {/* Mobile Nav */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white absolute top-full left-0 right-0 shadow-xl border-t border-gray-100">
-          <div className="px-4 pt-2 pb-6 space-y-1 flex flex-col">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
+          <button
+            type="button"
+            className="rounded-lg p-2 text-foreground md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </motion.div>
+      </motion.header>
+
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-50 bg-white md:hidden"
+        >
+          <div className="flex h-16 items-center justify-between border-b px-4">
+            <BrandLogo variant="header" href="/" onNavigate={() => setIsMenuOpen(false)} />
+            <button type="button" onClick={() => setIsMenuOpen(false)} aria-label="Cerrar">
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+          <nav className="flex flex-col gap-1 p-4">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-3 text-gray-800 hover:text-primary hover:bg-blue-50 rounded-lg font-semibold text-lg transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center justify-between rounded-2xl px-4 py-3 text-lg font-medium hover:bg-muted"
               >
                 {link.name}
-              </a>
+                <ChevronRight className="h-4 w-4 text-muted-foreground" />
+              </Link>
             ))}
-          </div>
-        </div>
+            <Button asChild className="mt-4 w-full rounded-full">
+              <a href={CONTACT.phoneHref} target="_blank" rel="noopener noreferrer">
+                Escríbenos por WhatsApp
+              </a>
+            </Button>
+          </nav>
+        </motion.div>
       )}
-    </header>
+    </>
   );
 }
