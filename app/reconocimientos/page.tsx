@@ -7,6 +7,7 @@ export default function ReconocimientosPage() {
       <PageShell
         title="Reconocimientos"
         description="Distinciones y menciones por cumplimiento en obra y gestión de calidad."
+        className="max-w-5xl"
       >
         <RecognitionsSection embedded />
       </PageShell>

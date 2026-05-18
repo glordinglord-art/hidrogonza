@@ -7,17 +7,15 @@ import { ArrowRight, ArrowUpRight, Zap } from "lucide-react";
 import {
   SERVICES,
   FEATURED_PROJECTS,
-  PARTNERS,
   CONTACT,
 } from "@/constants/content";
-import { RecognitionsShowcase } from "@/components/RecognitionsShowcase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { HeroLogo } from "@/components/HeroLogo";
+import { HomeOverviewSection } from "@/components/HomeOverviewSection";
 import { PulseFitHero } from "@/components/ui/pulse-fit-hero";
-import { cn } from "@/lib/utils";
-import { getPartnerLogoProps, partnerLogoAreaStyles } from "@/lib/partner-logo";
+import { PartnersImageAccordionSection } from "@/components/ui/interactive-image-accordion";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -68,8 +66,8 @@ export function DesignAgency() {
               <span className="text-primary">hidrosanitarias</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-              Diseño y construcción de redes de gas, sistemas contra incendio y
-              equipos de bombeo con calidad, normatividad y confianza.
+              Instalaciones de gas, redes hidrosanitarias, contra incendio y bombeo
+              para obra nueva y remodelación — con normatividad, calidad y respaldo técnico.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
@@ -101,81 +99,8 @@ export function DesignAgency() {
         </motion.div>
       </PulseFitHero>
 
-      {/* Servicios preview */}
-      <section className="bg-white py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="mb-12 text-center"
-          >
-            <span className="rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
-              Nuestros servicios
-            </span>
-            <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
-              Lo que hacemos
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Instalaciones certificadas para edificaciones residenciales, comerciales e industriales.
-            </p>
-          </motion.div>
+      <HomeOverviewSection />
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {SERVICES.map((service) => (
-              <motion.div key={service.title} variants={itemFadeIn}>
-                <Link
-                  href={service.href}
-                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.25 }}
-                    className="relative h-40 overflow-hidden"
-                  >
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent" />
-                    <service.icon className="absolute bottom-3 left-4 h-8 w-8 text-primary" />
-                  </motion.div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-bold text-foreground">{service.title}</h3>
-                    <p className="mt-2 flex-1 text-sm text-muted-foreground line-clamp-3">
-                      {service.description}
-                    </p>
-                    <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">
-                      Ver más <ArrowRight className="ml-1 h-4 w-4" />
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="mt-10 text-center"
-          >
-            <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link href="/servicios">Todos los servicios</Link>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Proyectos bento */}
       <section className="bg-slate-50 py-16 md:py-24">
@@ -244,96 +169,31 @@ export function DesignAgency() {
         </motion.div>
       </section>
 
-      {/* Reconocimientos */}
-      <section className="bg-white py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="mb-10 text-center"
-          >
-            <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">Reconocimientos</h2>
-            <p className="mx-auto mt-3 max-w-xl text-slate-600">
-              Distinciones por cumplimiento en obra y gestión de calidad.
+      {/* Reconocimientos — enlace compacto */}
+      <section className="border-y border-slate-200 bg-white py-10 md:py-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
+          className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 text-center sm:flex-row sm:px-6 sm:text-left lg:px-8"
+        >
+          <motion.div>
+            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">Reconocimientos</h2>
+            <p className="mt-1 max-w-xl text-sm text-slate-600 sm:text-base">
+              Certificados y distinciones de Constructora Capital y otras constructoras.
             </p>
           </motion.div>
-          <RecognitionsShowcase />
-          <div className="mt-10 text-center">
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/reconocimientos">
-                Ver reconocimientos y documentos
-                <ArrowUpRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
+          <Button asChild variant="outline" className="shrink-0 rounded-full">
+            <Link href="/reconocimientos">
+              Ver reconocimientos
+              <ArrowUpRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </motion.div>
       </section>
 
-      {/* Aliados */}
-      <section className="border-y border-slate-200 bg-slate-50 py-14">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold sm:text-3xl">Aliados y proveedores</h2>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="mx-auto mt-8 max-w-6xl"
-          >
-            <motion.div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {PARTNERS.filter((p) => p.logo).map((partner) => {
-                const style = partner.logoStyle ?? "yellow";
-                const img = getPartnerLogoProps(partner, "preview");
-                return (
-                  <motion.div
-                    key={partner.name}
-                    variants={itemFadeIn}
-                    className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md"
-                  >
-                    <div
-                      className={cn(
-                        "flex items-center justify-center px-6 py-8",
-                        partnerLogoAreaStyles[style],
-                        img.areaMinH ?? "min-h-[120px]"
-                      )}
-                    >
-                      <Image
-                        src={partner.logo!}
-                        alt={partner.name}
-                        width={img.w}
-                        height={img.h}
-                        quality={95}
-                        className={cn("h-auto w-full object-contain", img.img)}
-                        sizes="(max-width: 640px) 90vw, 320px"
-                      />
-                    </div>
-                    <p className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-800">
-                      {partner.name}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              {PARTNERS.filter((p) => !p.logo).map((partner) => (
-                <motion.span
-                  key={partner.name}
-                  variants={itemFadeIn}
-                  whileHover={{ scale: 1.05 }}
-                  className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-600 shadow-sm transition-colors hover:border-primary/40 hover:text-primary"
-                >
-                  {partner.name}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
-          <Button asChild variant="link" className="mt-6">
-            <Link href="/aliados">Ver aliados</Link>
-          </Button>
-        </div>
-      </section>
+      <PartnersImageAccordionSection />
 
       {/* Contacto */}
       <section id="contacto" className="bg-white py-16 md:py-24">

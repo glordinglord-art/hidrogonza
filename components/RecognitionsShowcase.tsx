@@ -31,7 +31,7 @@ export function RecognitionsShowcase({ className }: RecognitionsShowcaseProps) {
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
           variants={stagger}
-          className="mx-auto w-full max-w-6xl space-y-8"
+          className="mx-auto w-full max-w-4xl space-y-5"
         >
           <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-500">
             Certificados
@@ -48,12 +48,12 @@ export function RecognitionsShowcase({ className }: RecognitionsShowcaseProps) {
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
           variants={stagger}
-          className={horizontal.length > 0 ? "mx-auto mt-12 max-w-6xl space-y-6" : "mx-auto max-w-6xl space-y-6"}
+          className={horizontal.length > 0 ? "mx-auto mt-10 max-w-5xl space-y-5" : "mx-auto max-w-5xl space-y-5"}
         >
           <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-500">
             Trofeos y placas
           </p>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {vertical.map((item) => (
               <RecognitionCardVertical key={item.id} item={item} variants={fadeUp} />
             ))}

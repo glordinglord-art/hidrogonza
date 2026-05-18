@@ -6,7 +6,7 @@ export default function ProyectosPage() {
     <div className="min-h-screen bg-white">
       <PageShell
         title="Proyectos realizados"
-        description="Obras destacadas con las principales constructoras del país."
+        description="Obras con Constructora Capital, Optima Construcciones y Total Urbe. Clic en cada proyecto para ver alcance y materiales."
       >
         <ProjectsSection embedded />
       </PageShell>

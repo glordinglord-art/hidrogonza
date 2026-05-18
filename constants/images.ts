@@ -8,14 +8,35 @@ export const IMAGES = {
   logo: "/logo-hero.png",
   heroBg: "https://images.unsplash.com/photo-1541888086925-ebc660bc49f4?q=80&w=2600&auto=format&fit=crop",
   services: {
-    incendio: "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?q=80&w=2600&auto=format&fit=crop",
-    gas: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2600&auto=format&fit=crop",
-    desagues: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2600&auto=format&fit=crop",
-    hidraulicas: "https://images.unsplash.com/photo-1527628173875-3c7bfd28ad78?q=80&w=2600&auto=format&fit=crop",
+    incendio: "/services/incendio/01-sala-bombas.png",
+    incendioGallery: [
+      "/services/incendio/01-sala-bombas.png",
+      "/services/incendio/02-rociadores-estacionamiento.png",
+      "/services/incendio/03-equipos-red.png",
+    ],
+    gas: "/services/gas/01-centro-medicion.png",
+    gasGallery: [
+      "/services/gas/01-centro-medicion.png",
+      "/services/gas/02-centro-interior.png",
+      "/services/gas/03-red-regulacion.png",
+      "/services/gas/04-calentador-bosch.png",
+    ],
+    desagues: "/services/desagues/01-losa.png",
+    desaguesGallery: [
+      "/services/desagues/01-losa.png",
+      "/services/desagues/03-techo.png",
+      "/services/desagues/04-planta-baja.png",
+      "/services/desagues/05-obra-amplia.png",
+      "/services/desagues/06-red-completa.png",
+    ],
+    hidraulicas: "/services/hidraulicas/01-red-techo.png",
+    hidraulicasGallery: [
+      "/services/hidraulicas/01-red-techo.png",
+      "/services/hidraulicas/02-obra-zanja.png",
+      "/services/hidraulicas/03-agua-potable.png",
+    ],
   },
-  projects: [
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1541888086925-ebc660bc49f4?q=80&w=2600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2600&auto=format&fit=crop",
-  ],
+  projects: {
+    plazaMadero: "/projects/plaza-madero.png",
+  },
 };

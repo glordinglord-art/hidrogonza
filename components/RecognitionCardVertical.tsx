@@ -30,7 +30,7 @@ export function RecognitionCardVertical({ item, className, variants }: Recogniti
           caption={`${item.title} (${item.year})`}
           sizes="(max-width: 768px) 100vw, 360px"
           priority={item.id === "contratista-ganador-2025"}
-          aspectClassName="relative aspect-[3/4] w-full"
+          aspectClassName="relative aspect-[4/5] max-h-[280px] w-full sm:max-h-[300px]"
           className="rounded-xl"
         />
         <span className="pointer-events-none absolute left-6 top-6 z-10 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow">

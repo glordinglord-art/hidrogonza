@@ -20,6 +20,11 @@ interface PulseFitHeroProps {
   primaryAction?: { label: string; href: string };
   secondaryAction?: { label: string; href: string };
   programs?: ProgramCard[];
+  /** Texto sobre el carrusel de servicios */
+  programsEyebrow?: string;
+  programsTitle?: string;
+  programsSubtitle?: string;
+  programsCta?: { label: string; href: string };
   className?: string;
   children?: React.ReactNode;
 }
@@ -31,6 +36,10 @@ export function PulseFitHero({
   primaryAction,
   secondaryAction,
   programs = [],
+  programsEyebrow = "Nuestros servicios",
+  programsTitle = "Especialidades técnicas",
+  programsSubtitle = "Seis líneas de trabajo para cubrir su proyecto de principio a fin.",
+  programsCta = { label: "Ver todos los servicios", href: "/servicios" },
   className,
   children,
 }: PulseFitHeroProps) {
@@ -86,8 +95,31 @@ export function PulseFitHero({
           initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="relative z-10 w-full overflow-hidden pb-12 pt-8 md:pb-16 md:pt-10"
+          className="relative z-10 w-full overflow-hidden pb-12 pt-6 md:pb-16 md:pt-8"
         >
+          <div className="mx-auto mb-8 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+            <span className="inline-flex rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
+              {programsEyebrow}
+            </span>
+            <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+              {programsTitle}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-base text-slate-600 sm:text-lg">
+              {programsSubtitle}
+            </p>
+            {programsCta && (
+              <Link
+                href={programsCta.href}
+                className="mt-4 inline-flex items-center text-sm font-semibold text-primary transition-colors hover:text-primary/80 sm:text-base"
+              >
+                {programsCta.label}
+                <span aria-hidden className="ml-1.5">
+                  →
+                </span>
+              </Link>
+            )}
+          </div>
+
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent md:w-36" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent md:w-36" />
 

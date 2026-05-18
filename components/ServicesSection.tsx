@@ -1,5 +1,9 @@
 "use client";
 
+import { DrainagePhotosCollage } from "./ui/drainage-photos-collage";
+import { GasPhotosCollage } from "./ui/gas-photos-collage";
+import { HidraulicasPhotosCollage } from "./ui/hidraulicas-photos-collage";
+import { IncendioPhotosCollage } from "./ui/incendio-photos-collage";
 import { TextParallaxContent } from "./ui/text-parallax-content-scroll";
 import { IMAGES } from "@/constants/images";
 import { CheckCircle2 } from "lucide-react";
@@ -17,7 +21,7 @@ export function ServicesSection({ embedded }: ServicesSectionProps) {
       )}
 
       <TextParallaxContent
-        imgUrl={IMAGES.services.incendio}
+        background={<IncendioPhotosCollage />}
         subheading="Seguridad y Protección"
         heading="Redes Contra Incendio"
       >
@@ -34,7 +38,7 @@ export function ServicesSection({ embedded }: ServicesSectionProps) {
       </TextParallaxContent>
 
       <TextParallaxContent
-        imgUrl={IMAGES.services.gas}
+        background={<GasPhotosCollage />}
         subheading="Energía Segura"
         heading="Redes de Gas Natural y GLP"
       >
@@ -51,24 +55,24 @@ export function ServicesSection({ embedded }: ServicesSectionProps) {
       </TextParallaxContent>
 
       <TextParallaxContent
-        imgUrl={IMAGES.services.desagues}
+        background={<DrainagePhotosCollage />}
         subheading="Saneamiento"
         heading="Redes de Desagües"
       >
         <ServiceContent
-          title="Sistemas de Desagüe"
-          description="Instalación de sistemas para redes de desagüe de aguas negras, aguas grises y pluviales, ventilaciones reventilaciones, sistemas de drenaje para edificaciones residenciales, comerciales e industriales."
+          title="Sistemas de desagües"
+          description="Instalación de sistemas de desagües para aguas negras, aguas grises, aguas pluviales y de lluvia, con ventilaciones y reventilaciones. Sistemas de drenaje para edificaciones residenciales, comerciales e industriales."
           features={[
-            "Aguas negras, grises y pluviales",
+            "Aguas negras, grises, pluviales y de lluvia",
             "Ventilaciones y reventilaciones",
             "Sistemas de drenaje completos",
-            "Atención a sector residencial, comercial e industrial",
+            "Sector residencial, comercial e industrial",
           ]}
         />
       </TextParallaxContent>
 
       <TextParallaxContent
-        imgUrl={IMAGES.services.hidraulicas}
+        background={<HidraulicasPhotosCollage />}
         subheading="Agua Potable"
         heading="Redes Hidráulicas"
       >

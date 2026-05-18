@@ -3,7 +3,7 @@ export const COMPANY_INTRO =
 
 export const COMPANY_STATS = [
   { value: "10+", label: "Años de trayectoria" },
-  { value: "4", label: "Líneas de servicio" },
+  { value: "6", label: "Líneas de servicio" },
   { value: "12+", label: "Aliados estratégicos" },
   { value: "100%", label: "Compromiso normativo" },
 ] as const;

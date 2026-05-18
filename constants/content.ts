@@ -1,5 +1,6 @@
 import { Flame, Droplets, Fuel, Waves } from "lucide-react";
 import { IMAGES } from "./images";
+import { BENTO_PROJECTS } from "./projects";
 
 export const NAV_LINKS = [
   { name: "Inicio", href: "/" },
@@ -45,36 +46,13 @@ export const SERVICES = [
   },
 ] as const;
 
-export const FEATURED_PROJECTS = [
-  {
-    name: "Centro Comercial Plaza Madero",
-    client: "Optima Construcciones",
-    location: "Chía",
-    image: IMAGES.projects[0],
-    span: "col-span-2 row-span-2",
-  },
-  {
-    name: "Locales Comerciales Sienna",
-    client: "Constructora Capital",
-    location: "Zipaquirá",
-    image: IMAGES.projects[1],
-    span: "",
-  },
-  {
-    name: "Abadía Boutique",
-    client: "Total Urbe",
-    location: "Anapoima",
-    image: IMAGES.projects[2],
-    span: "",
-  },
-  {
-    name: "Reserva de Madelena",
-    client: "Constructora Capital",
-    location: "Bogotá",
-    image: IMAGES.projects[0],
-    span: "col-span-2",
-  },
-] as const;
+export const FEATURED_PROJECTS = BENTO_PROJECTS.map((p) => ({
+  name: p.name,
+  client: p.client,
+  location: p.location.split(",")[0] ?? p.location,
+  image: p.image,
+  span: p.bentoSpan ?? "",
+}));
 
 export type Partner = {
   name: string;
@@ -152,7 +130,7 @@ export const PARTNERS: Partner[] = [
     name: "Rocha Londoño",
     tagline: "Innovando · 1985 – 2025",
     logo: "/partners/rocha-londono.png",
-    logoStyle: "dark",
+    logoStyle: "light",
     logoSize: "large",
     badge: "40 años de trayectoria",
   },
@@ -171,6 +149,23 @@ export const PARTNERS: Partner[] = [
     badge: "Ingeniería industrial",
   },
 ];
+
+/** Aliados destacados en el acordeón del inicio */
+export const HOME_FEATURED_PARTNER_NAMES = [
+  "Colmena",
+  "Pavco Wavin",
+  "Nurueña",
+  "Rocha Londoño",
+  "Flexilatina",
+] as const;
+
+export function getPartnersByNames(names: readonly string[]): Partner[] {
+  return names
+    .map((name) => PARTNERS.find((p) => p.name === name))
+    .filter((p): p is Partner => Boolean(p));
+}
+
+export const HOME_FEATURED_PARTNERS = getPartnersByNames(HOME_FEATURED_PARTNER_NAMES);
 
 const WHATSAPP_NUMBER = "573112212000";
 const WHATSAPP_MESSAGE =
