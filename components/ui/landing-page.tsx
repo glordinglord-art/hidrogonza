@@ -10,8 +10,7 @@ import {
   CONTACT,
 } from "@/constants/content";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { ContactForm } from "@/components/ContactForm";
 import { HeroLogo } from "@/components/HeroLogo";
 import { HomeOverviewSection } from "@/components/HomeOverviewSection";
 import { PulseFitHero } from "@/components/ui/pulse-fit-hero";
@@ -239,15 +238,7 @@ export function DesignAgency() {
             transition={{ duration: 0.5 }}
             className="rounded-3xl border border-border bg-card p-6 shadow-sm"
           >
-            <h3 className="text-xl font-bold">Envíenos un mensaje</h3>
-            <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <Input placeholder="Nombre" className="rounded-2xl" />
-              <Input type="email" placeholder="Correo electrónico" className="rounded-2xl" />
-              <Textarea placeholder="Mensaje" className="min-h-[120px] rounded-2xl" />
-              <Button type="submit" className="w-full rounded-full">
-                Enviar mensaje
-              </Button>
-            </form>
+            <ContactForm />
           </motion.div>
         </div>
       </section>
