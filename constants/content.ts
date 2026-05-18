@@ -179,4 +179,6 @@ export const CONTACT = {
   address: "Carrera 68 # 57C - 09 Sur",
   city: "Bogotá D.C., Colombia",
   emails: ["hidrogonza11@hotmail.com", "hidrogonza11@gmail.com"],
+  ownerName: "José Samuel González Gallego",
+  ownerRole: "Gerencia — Hidrogonza S.A.S.",
 } as const;

@@ -10,7 +10,9 @@ export const COMPANY_STATS = [
 
 export const LEADERSHIP = {
   role: "Gerencia",
-  name: "Dirección Hidrogonza S.A.S.",
+  name: "José Samuel González Gallego",
+  company: "Hidrogonza S.A.S.",
+  photo: "/team/jose-samuel-gonzalez-gerencia.png",
   bio: "La gerencia acompaña cada proyecto de forma cercana: desde la asesoría inicial hasta la entrega, con seguimiento técnico y trato directo con el cliente.",
   highlights: [
     "Atención personalizada en cada obra",

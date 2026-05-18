@@ -212,6 +212,10 @@ export function DesignAgency() {
             </p>
             <ul className="mt-8 space-y-4 text-foreground">
               <li>
+                <strong>Gerencia:</strong> {CONTACT.ownerName}
+                <span className="mt-0.5 block text-sm text-muted-foreground">{CONTACT.ownerRole}</span>
+              </li>
+              <li>
                 <strong>Teléfono:</strong>{" "}
                 <a href={CONTACT.phoneHref} className="text-primary hover:underline">
                   {CONTACT.phone}

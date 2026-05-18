@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
 import { CONTACT } from "@/constants/content";
-import { Phone, MapPin, Mail } from "lucide-react";
+import { Phone, MapPin, Mail, UserRound } from "lucide-react";
 
 export function Footer() {
   return (
     <footer id="contacto" className="bg-secondary text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-6">
               <BrandLogo variant="footer" href="/" />
@@ -18,10 +17,20 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Contact Info */}
           <div className="lg:col-span-2">
             <h3 className="text-2xl font-bold mb-8 text-primary">Contáctenos</h3>
             <div className="space-y-6">
+              <div className="flex items-center space-x-4 group">
+                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors">
+                  <UserRound className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">Gerencia</p>
+                  <p className="text-lg font-semibold">{CONTACT.ownerName}</p>
+                  <p className="text-gray-400 text-sm">Hidrogonza S.A.S.</p>
+                </div>
+              </div>
+
               <div className="flex items-center space-x-4 group">
                 <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors">
                   <Phone className="w-6 h-6 text-primary group-hover:text-white transition-colors" />

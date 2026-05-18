@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Award,
@@ -8,7 +9,6 @@ import {
   ShieldCheck,
   Target,
   Eye,
-  UserRound,
 } from "lucide-react";
 import {
   ABOUT_PILLARS,
@@ -81,13 +81,21 @@ export function AboutSection({ embedded }: AboutSectionProps) {
                 className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-primary/20 blur-2xl"
                 aria-hidden
               />
-              <div className="flex h-32 w-32 items-center justify-center rounded-full bg-primary/20 ring-4 ring-primary/30">
-                <UserRound className="h-16 w-16 text-primary" strokeWidth={1.5} />
+              <div className="relative aspect-[4/5] w-44 overflow-hidden rounded-2xl bg-white/10 shadow-xl ring-4 ring-primary/40 sm:w-48">
+                <Image
+                  src={LEADERSHIP.photo}
+                  alt={LEADERSHIP.name}
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 176px, 192px"
+                  priority
+                />
               </div>
               <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-sky-200">
                 {LEADERSHIP.role}
               </p>
               <h3 className="mt-2 text-center text-2xl font-bold">{LEADERSHIP.name}</h3>
+              <p className="mt-1 text-center text-sm text-slate-300">{LEADERSHIP.company}</p>
             </div>
             <div className="flex flex-col justify-center p-8 lg:col-span-3 lg:p-12">
               <p className="text-lg leading-relaxed text-slate-100">{LEADERSHIP.bio}</p>
