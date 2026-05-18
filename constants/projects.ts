@@ -90,7 +90,6 @@ export const PROJECTS: Project[] = [
     name: "Abadía Boutique — Anapoima",
     client: "Total Urbe",
     clientLogo: "/clients/total-urbe.png",
-    clientLogoSquare: true,
     location: "Anapoima, Cundinamarca",
     image: "/projects/abadia-boutique.png",
     category: "mixto",

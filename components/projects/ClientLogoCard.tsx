@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { getClientLogoImageProps, getClientLogoLayout } from "@/lib/client-logo";
+import {
+  clientLogoIncludesName,
+  getClientLogoImageProps,
+  getClientLogoLayout,
+} from "@/lib/client-logo";
 import { cn } from "@/lib/utils";
 
 type ClientLogoCardProps = {
@@ -11,7 +15,8 @@ type ClientLogoCardProps = {
 export function ClientLogoCard({ client, clientLogo, clientLogoSquare }: ClientLogoCardProps) {
   const layout = getClientLogoLayout(clientLogo, clientLogoSquare);
   const props = getClientLogoImageProps(layout);
-  const hideClientLabel = clientLogoSquare || layout === "stacked";
+  const hideClientLabel =
+    clientLogoSquare || layout === "stacked" || clientLogoIncludesName(clientLogo);
 
   return (
     <div
