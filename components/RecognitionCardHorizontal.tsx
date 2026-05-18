@@ -28,12 +28,9 @@ export function RecognitionCardHorizontal({ item, className, variants }: Recogni
           src={item.image}
           alt={item.alt}
           caption={`${item.title} (${item.year})`}
-          sizes="(max-width: 1024px) 100vw, 900px"
           priority={item.id === "mujeres-capital-certificado-2025"}
-          imageRotate={item.imageRotate}
-          fit="contain"
+          layout="landscape"
           lightboxTight
-          aspectClassName="relative aspect-[16/10] w-full overflow-hidden rounded-xl"
           className="rounded-xl"
         />
         <span className="pointer-events-none absolute left-4 top-4 z-10 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow sm:left-5 sm:top-5">

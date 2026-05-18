@@ -20,6 +20,8 @@ type ExpandableImageProps = {
   fit?: "contain" | "cover";
   /** Modal sin caja blanca, solo imagen sobre fondo oscuro */
   lightboxTight?: boolean;
+  /** Certificados apaisados: ancho natural sin recuadro vertical */
+  layout?: "fill" | "landscape";
 };
 
 export function ExpandableImage({
@@ -34,6 +36,7 @@ export function ExpandableImage({
   imageRotate = 0,
   fit = "contain",
   lightboxTight = false,
+  layout = "fill",
 }: ExpandableImageProps) {
   const [open, setOpen] = useState(false);
   const rotateStyle = imageRotate ? { transform: `rotate(${imageRotate}deg)` } : undefined;
@@ -64,22 +67,35 @@ export function ExpandableImage({
         )}
         aria-label={`Ampliar imagen: ${alt}`}
       >
-        <div className={cn(aspectClassName, "flex items-center justify-center overflow-hidden")}>
-          <Image
+        {layout === "landscape" ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={src}
             alt={alt}
-            fill
-            sizes={sizes}
-            priority={priority}
             style={rotateStyle}
             className={cn(
-              fit === "cover" ? "object-cover object-center" : "object-contain",
-              "transition-transform duration-300 group-hover:scale-[1.02]",
-              imageRotate !== 0 && "scale-[1.32]",
+              "h-auto w-full rounded-xl transition-transform duration-300 group-hover:scale-[1.01]",
               imageClassName
             )}
           />
-        </div>
+        ) : (
+          <div className={cn(aspectClassName, "flex items-center justify-center overflow-hidden")}>
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes={sizes}
+              priority={priority}
+              style={rotateStyle}
+              className={cn(
+                fit === "cover" ? "object-cover object-center" : "object-contain",
+                "transition-transform duration-300 group-hover:scale-[1.02]",
+                imageRotate !== 0 && "scale-[1.32]",
+                imageClassName
+              )}
+            />
+          </div>
+        )}
         <span className="absolute inset-0 flex items-center justify-center bg-[#0a192f]/0 transition-colors duration-300 group-hover:bg-[#0a192f]/25">
           <span className="flex translate-y-2 items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-[#0a192f] opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             <ZoomIn className="h-4 w-4 text-primary" />
