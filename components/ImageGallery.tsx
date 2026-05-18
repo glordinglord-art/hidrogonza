@@ -29,7 +29,10 @@ export function ImageGallery({ items, columns = 2, className }: ImageGalleryProp
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
-      variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.12 } },
+      }}
       className={cn(
         "grid gap-6",
         columns === 3
@@ -44,20 +47,20 @@ export function ImageGallery({ items, columns = 2, className }: ImageGalleryProp
           variants={fadeUp}
           className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
         >
-          <motion.div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+          <div className="relative aspect-[3/4] overflow-hidden bg-slate-50 p-3">
             <Image
               src={item.image}
               alt={item.alt}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              className="object-contain transition-transform duration-500 group-hover:scale-[1.02]"
             />
             {item.badge && (
               <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow">
                 {item.badge}
               </span>
             )}
-          </motion.div>
+          </div>
           <div className="p-5">
             <h3 className="text-lg font-bold text-slate-900">{item.title}</h3>
             {item.description && (

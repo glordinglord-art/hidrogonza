@@ -3,19 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Award,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, Zap } from "lucide-react";
 import {
   SERVICES,
   FEATURED_PROJECTS,
   PARTNERS,
   CONTACT,
 } from "@/constants/content";
-import { RECOGNITIONS } from "@/constants/credentials";
+import { RecognitionsShowcase } from "@/components/RecognitionsShowcase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -264,35 +259,7 @@ export function DesignAgency() {
               Distinciones por cumplimiento en obra y gestión de calidad.
             </p>
           </motion.div>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid gap-6 md:grid-cols-2"
-          >
-            {RECOGNITIONS.map((item) => (
-              <motion.div
-                key={item.year}
-                variants={itemFadeIn}
-                className="flex gap-4 rounded-3xl border border-border bg-card p-6 shadow-sm"
-              >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10">
-                  <Award className="h-7 w-7 text-primary" />
-                </div>
-                <motion.div
-                  initial={{ opacity: 0, x: 8 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <span className="text-sm font-bold text-primary">{item.year}</span>
-                  <h3 className="text-xl font-bold">{item.title}</h3>
-                  <p className="mt-1 text-muted-foreground">{item.description}</p>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <RecognitionsShowcase />
           <div className="mt-10 text-center">
             <Button asChild size="lg" className="rounded-full">
               <Link href="/reconocimientos">

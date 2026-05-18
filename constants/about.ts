@@ -37,13 +37,25 @@ export const TIMELINE = [
     year: "2020",
     title: "Reconocimiento en obra",
     description:
-      "Mención de honor de Constructora Capital por el cumplimiento de actividades en el proyecto Reserva de Madelena.",
+      "Mención de honor de Constructora Capital en Reserva de Madelena por calidad, compromiso, seguridad y programación (nov. 2019 – ene. 2020).",
   },
   {
     year: "2022",
     title: "Gestión destacada",
     description:
-      "Reconocimiento de Constructora Capital al cumplimiento del sistema de gestión en proyectos de construcción.",
+      "Reconocimiento otorgado por Constructora Capital Bogotá SAS al cumplimiento del sistema de Gestión.",
+  },
+  {
+    year: "2024",
+    title: "Mención de honor",
+    description:
+      "Constructora Capital Bogotá SAS, proyecto Porto Hayuelos 2, por desempeño y compromiso laboral.",
+  },
+  {
+    year: "2025",
+    title: "Mujeres que construyen Capital",
+    description:
+      "Contratista ganador y certificado por liderazgo e inclusión laboral femenina — Constructora Capital, periodo 2025-2.",
   },
   {
     year: "Hoy",
