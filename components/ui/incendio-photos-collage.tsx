@@ -7,14 +7,31 @@ import { cn } from "@/lib/utils";
 const PHOTOS = IMAGES.services.incendioGallery;
 
 const DESKTOP_LAYOUT = [
-  { src: 0, className: "col-span-8 row-span-3 col-start-1 row-start-1", imageClassName: "object-cover object-center" },
-  { src: 1, className: "col-span-8 row-span-3 col-start-1 row-start-4", imageClassName: "object-cover object-center" },
+  { src: 0, className: "col-span-8 row-span-4 col-start-1 row-start-1", imageClassName: "object-cover object-center" },
+  { src: 1, className: "col-span-4 row-span-2 col-start-1 row-start-5", imageClassName: "object-cover object-center" },
+  { src: 2, className: "col-span-4 row-span-2 col-start-5 row-start-5", imageClassName: "object-cover object-center" },
   {
-    src: 2,
+    src: 3,
     className: "col-span-4 row-span-6 col-start-9 row-start-1",
     imageClassName: "object-cover object-center",
   },
 ] as const;
+
+function incendioPhotoAlt(src: string, index: number) {
+  if (src.includes("rociadores-estacionamiento")) {
+    return "Red contra incendio — rociadores en parqueadero";
+  }
+  if (src.includes("rociadores-interior")) {
+    return "Red contra incendio — rociadores interiores";
+  }
+  if (src.includes("sala-bombas")) {
+    return "Red contra incendio — sala de bombas";
+  }
+  if (src.includes("equipos-red")) {
+    return "Red contra incendio — equipos de red";
+  }
+  return `Red contra incendio — obra ${index + 1}`;
+}
 
 type CollageCellProps = {
   src: string;
@@ -59,7 +76,7 @@ export function IncendioPhotosCollage({ className }: IncendioPhotosCollageProps)
           <CollageCell
             key={src}
             src={src}
-            alt={`Red contra incendio — obra ${index + 1}`}
+            alt={incendioPhotoAlt(src, index)}
             imageClassName="object-cover object-center"
             className="min-h-0 flex-1"
           />
@@ -67,11 +84,11 @@ export function IncendioPhotosCollage({ className }: IncendioPhotosCollageProps)
       </div>
 
       <div className="hidden h-full grid-cols-12 grid-rows-6 gap-1 p-1 sm:gap-1.5 sm:p-1.5 md:grid">
-        {DESKTOP_LAYOUT.map(({ src, className: cell, imageClassName }, index) => (
+        {DESKTOP_LAYOUT.map(({ src: photoIndex, className: cell, imageClassName }, index) => (
           <CollageCell
-            key={PHOTOS[src]}
-            src={PHOTOS[src]}
-            alt={`Red contra incendio — obra ${index + 1}`}
+            key={PHOTOS[photoIndex]}
+            src={PHOTOS[photoIndex]}
+            alt={incendioPhotoAlt(PHOTOS[photoIndex], index)}
             imageClassName={imageClassName}
             className={cell}
           />
