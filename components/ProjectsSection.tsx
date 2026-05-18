@@ -10,13 +10,23 @@ import { ProjectDetailDialog } from "@/components/projects/ProjectDetailDialog";
 import type { Project } from "@/constants/projects";
 import { Button } from "@/components/ui/button";
 
-type ProjectsSectionProps = { embedded?: boolean };
+type ProjectsSectionProps = {
+  embedded?: boolean;
+  /** Abre el detalle al cargar (p. ej. desde el bento del inicio: /proyectos?proyecto=sienna) */
+  initialProjectId?: string | null;
+};
 
-export function ProjectsSection({ embedded }: ProjectsSectionProps) {
+export function ProjectsSection({ embedded, initialProjectId }: ProjectsSectionProps) {
   const [selected, setSelected] = useState<Project | null>(null);
   const otherProjects = PROJECTS.filter((p) => !p.featured);
 
   const close = useCallback(() => setSelected(null), []);
+
+  useEffect(() => {
+    if (!initialProjectId) return;
+    const project = PROJECTS.find((p) => p.id === initialProjectId);
+    if (project) setSelected(project);
+  }, [initialProjectId]);
 
   useEffect(() => {
     if (!selected) return;

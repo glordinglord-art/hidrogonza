@@ -129,30 +129,30 @@ export function DesignAgency() {
           >
             {FEATURED_PROJECTS.map((project, i) => (
               <motion.div
-                key={project.name}
+                key={project.id}
                 variants={itemFadeIn}
-                className={`group relative overflow-hidden rounded-3xl ${
-                  i === 0 ? "md:col-span-2 md:row-span-2 md:min-h-[420px]" : ""
-                } ${project.span}`}
+                className={`${i === 0 ? "md:col-span-2 md:row-span-2" : ""} ${project.span}`}
               >
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-90 transition-opacity group-hover:opacity-100" />
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  className="absolute bottom-0 left-0 right-0 p-5 text-white"
+                <Link
+                  href={`/proyectos?proyecto=${project.id}`}
+                  className={`group relative block h-full min-h-[200px] overflow-hidden rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                    i === 0 ? "md:min-h-[420px]" : ""
+                  }`}
                 >
-                  <p className="text-sm text-primary">{project.client}</p>
-                  <h3 className="text-lg font-bold">{project.name}</h3>
-                  <p className="text-sm text-slate-300">{project.location}</p>
-                </motion.div>
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-90 transition-opacity group-hover:opacity-100" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                    <p className="text-sm text-primary">{project.client}</p>
+                    <h3 className="text-lg font-bold">{project.name}</h3>
+                    <p className="text-sm text-slate-300">{project.location}</p>
+                  </div>
+                  <span className="sr-only">Ver detalle del proyecto</span>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

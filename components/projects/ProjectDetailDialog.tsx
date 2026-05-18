@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Building2, MapPin, X, CheckCircle2, Wrench } from "lucide-react";
 import type { Project, ProjectMaterial } from "@/constants/projects";
+import { ClientLogoCard } from "@/components/projects/ClientLogoCard";
 import { cn } from "@/lib/utils";
 
 const PARTNER_LOGO_BOX: Record<NonNullable<ProjectMaterial["partnerLogoStyle"]>, string> = {
@@ -87,25 +88,11 @@ export function ProjectDetailDialog({ project, onClose }: ProjectDetailDialogPro
             <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5 sm:px-7 sm:py-6">
               <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {project.clientLogo ? (
-                  <div className="flex min-h-[9rem] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 px-5 py-5 shadow-sm sm:min-h-[9.5rem]">
-                    <div className="flex min-h-[6.5rem] flex-1 items-center justify-center sm:min-h-[7rem]">
-                      <Image
-                        src={project.clientLogo}
-                        alt={project.client}
-                        width={project.clientLogoSquare ? 200 : 400}
-                        height={project.clientLogoSquare ? 200 : 120}
-                        className={cn(
-                          "h-auto w-full object-contain object-center",
-                          project.clientLogoSquare
-                            ? "max-h-[5.5rem] max-w-[5.5rem] sm:max-h-[6.25rem] sm:max-w-[6.25rem]"
-                            : "max-h-[4.5rem] max-w-[16rem] sm:max-h-[5rem] sm:max-w-[18rem]"
-                        )}
-                      />
-                    </div>
-                    {!project.clientLogoSquare && (
-                      <p className="mt-3 text-center text-xs font-medium text-slate-500">{project.client}</p>
-                    )}
-                  </div>
+                  <ClientLogoCard
+                    client={project.client}
+                    clientLogo={project.clientLogo}
+                    clientLogoSquare={project.clientLogoSquare}
+                  />
                 ) : (
                   <div className="flex min-h-[7.5rem] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
                     <Building2 className="mb-2 h-8 w-8 text-primary" />

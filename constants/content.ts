@@ -47,6 +47,7 @@ export const SERVICES = [
 ] as const;
 
 export const FEATURED_PROJECTS = BENTO_PROJECTS.map((p) => ({
+  id: p.id,
   name: p.name,
   client: p.client,
   location: p.location.split(",")[0] ?? p.location,
