@@ -8,9 +8,8 @@ export const IMAGES = {
   logo: "/logo-hero.png",
   heroBg: "https://images.unsplash.com/photo-1541888086925-ebc660bc49f4?q=80&w=2600&auto=format&fit=crop",
   services: {
-    incendio: "/services/incendio/02-rociadores-estacionamiento.png",
+    incendio: "/services/incendio/01-sala-bombas.png",
     incendioGallery: [
-      "/services/incendio/02-rociadores-estacionamiento.png",
       "/services/incendio/01-sala-bombas.png",
       "/services/incendio/04-rociadores-interior.png",
       "/services/incendio/03-equipos-red.png",

@@ -7,20 +7,16 @@ import { cn } from "@/lib/utils";
 const PHOTOS = IMAGES.services.incendioGallery;
 
 const DESKTOP_LAYOUT = [
-  { src: 0, className: "col-span-8 row-span-4 col-start-1 row-start-1", imageClassName: "object-cover object-center" },
-  { src: 1, className: "col-span-4 row-span-2 col-start-1 row-start-5", imageClassName: "object-cover object-center" },
-  { src: 2, className: "col-span-4 row-span-2 col-start-5 row-start-5", imageClassName: "object-cover object-center" },
+  { src: 0, className: "col-span-8 row-span-3 col-start-1 row-start-1", imageClassName: "object-cover object-center" },
+  { src: 1, className: "col-span-8 row-span-3 col-start-1 row-start-4", imageClassName: "object-cover object-center" },
   {
-    src: 3,
+    src: 2,
     className: "col-span-4 row-span-6 col-start-9 row-start-1",
     imageClassName: "object-cover object-center",
   },
 ] as const;
 
 function incendioPhotoAlt(src: string, index: number) {
-  if (src.includes("rociadores-estacionamiento")) {
-    return "Red contra incendio — rociadores en parqueadero";
-  }
   if (src.includes("rociadores-interior")) {
     return "Red contra incendio — rociadores interiores";
   }
